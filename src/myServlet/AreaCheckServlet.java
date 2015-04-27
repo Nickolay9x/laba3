@@ -93,7 +93,7 @@ public class AreaCheckServlet extends HttpServlet {
         if( (y < -3.) || (y > 3.) )
             return false;
 
-        if( (x < 1) || (x > 5) )
+        if( (r < 1) || (r > 5) )
             return false;
 
         return true;
