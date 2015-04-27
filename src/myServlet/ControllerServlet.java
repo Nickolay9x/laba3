@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -27,15 +26,7 @@ public class ControllerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        if( (request.getParameter("x") == null) || (request.getParameter("y") == null) || (request.getParameter("r") == null) ) {
-
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-
-        } else {
-
-            request.getRequestDispatcher("/result").forward(request, response);
-
-        }
+        request.getRequestDispatcher("/result").forward(request, response);
 
     }
 }

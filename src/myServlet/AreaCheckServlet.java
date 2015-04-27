@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
 import java.io.IOException;
 
 public class AreaCheckServlet extends HttpServlet {
@@ -48,7 +47,7 @@ public class AreaCheckServlet extends HttpServlet {
 
         }
 
-            request.getRequestDispatcher("/").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     }
 
