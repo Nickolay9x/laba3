@@ -4,10 +4,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.io.IOException;
 
 public class AreaCheckServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
@@ -17,8 +19,6 @@ public class AreaCheckServlet extends HttpServlet {
         String x_in = new String("0");
         String y_in = new String("0");
         String r_in = new String("0");
-
-        PrintWriter out = response.getWriter();
 
         try {
 
@@ -32,17 +32,23 @@ public class AreaCheckServlet extends HttpServlet {
 
         }
 
-            if (isNumeric(x_in) && isNumeric(y_in) && isNumeric(r_in)) {
+        if (isNumeric(x_in) && isNumeric(y_in) && isNumeric(r_in)) {
 
-                /* HERE OUT OR REPLACE USE TAMPLATE */
+            float x = Float.parseFloat(x_in);
+            float y = Float.parseFloat(y_in);
+            float r = Float.parseFloat(r_in);
 
-            } else {
+            HttpSession session = request.getSession();
 
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            session.setAttribute("x_val", x_in);
+            session.setAttribute("y_val", y_in);
+            session.setAttribute("r_val", r_in);
+            session.setAttribute("is_in_area", isInArea(x, y, r));
+            session.setAttribute("actuality", true);
 
-            }
+        }
 
-        out.close();
+            request.getRequestDispatcher("/").forward(request, response);
 
     }
 
@@ -54,7 +60,11 @@ public class AreaCheckServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        PrintWriter out = response.getWriter();
+
+        out.write("AreaCheck");
+
+        //request.getRequestDispatcher("/").forward(request, response);
 
     }
 
