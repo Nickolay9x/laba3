@@ -37,13 +37,17 @@ public class AreaCheckServlet extends HttpServlet {
             float y = Float.parseFloat(y_in);
             float r = Float.parseFloat(r_in);
 
-            HttpSession session = request.getSession();
+            if(checkRange(x, y, r)) {
 
-            session.setAttribute("x_val", x_in);
-            session.setAttribute("y_val", y_in);
-            session.setAttribute("r_val", r_in);
-            session.setAttribute("is_in_area", isInArea(x, y, r));
-            session.setAttribute("actuality", true);
+                HttpSession session = request.getSession();
+
+                session.setAttribute("x_val", x_in);
+                session.setAttribute("y_val", y_in);
+                session.setAttribute("r_val", r_in);
+                session.setAttribute("is_in_area", isInArea(x, y, r));
+                session.setAttribute("actuality", true);
+
+            }
 
         }
 
@@ -76,6 +80,21 @@ public class AreaCheckServlet extends HttpServlet {
             return false;
 
         }
+
+        return true;
+
+    }
+
+    public static boolean checkRange(float x, float y, float r) {
+
+        if( (x < -4.) || (x > 4.) )
+            return false;
+
+        if( (y < -3.) || (y > 3.) )
+            return false;
+
+        if( (x < 1) || (x > 5) )
+            return false;
 
         return true;
 
