@@ -60,11 +60,7 @@ public class AreaCheckServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        PrintWriter out = response.getWriter();
-
-        out.write("AreaCheck");
-
-        //request.getRequestDispatcher("/").forward(request, response);
+        request.getRequestDispatcher("/").forward(request, response);
 
     }
 
